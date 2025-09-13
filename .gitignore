@@ -1,0 +1,27 @@
+
+
+# Ignore VSCode project files
+.idea/
+.vscode/
+
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Ignore uploads / user-generated content
+uploads/
+assets/images/properties/
+
+# Ignore config with sensitive info
+config/config.php
+includes/db.php
+
+# Ignore compiled CSS / JS if you use preprocessors
+assets/css/*.min.css
+assets/js/*.min.js
