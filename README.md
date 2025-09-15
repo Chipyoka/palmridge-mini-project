@@ -1,6 +1,6 @@
-# Palmridge Properties Mini Project - Key Pages
+# Zambezi Diamond Properties Mini Project - Key Pages
 
-This mini project extends the existing Palmridge Properties website to include advanced property search, listings, and management functionalities. The focus is on providing a responsive, real-time, and user-friendly property platform for Ndola.
+This mini project extends the existing Zambezi Properties website to include advanced property search, listings, and management functionalities. The focus is on providing a responsive, real-time, and user-friendly property platform for Ndola.
 
 ---
 
