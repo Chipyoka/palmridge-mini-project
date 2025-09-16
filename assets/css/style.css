@@ -136,6 +136,21 @@ div.error p{
     text-align: center;
 }
 
+.logout{
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+
+    font-size: .85rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+    padding: .5em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+    text-decoration: none;
+}
+
 /* ****************************************************** */
 /* ****************************************************** */
 /* ****************************************************** */
@@ -143,6 +158,8 @@ div.error p{
 
 /* Admin related CSS */
 
+
+/* login page */
 .top {
     background: var(--primary-color);
     color: #fff;
@@ -172,13 +189,80 @@ div.error p{
     margin-top: 1em;
 }
 
+/* dashboard */
+.top-bar{
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    padding: 1em 1.5em;
+
+    background: var(--background-light);
+}
+.top-bar .logo{
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    font-size: .85rem;
+    font-weight: 600;
+    text-decoration: none;
+    column-gap: 1em;
+}
+
+.user-actions{
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+.user-actions .username{
+    text-transform: capitalize;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.dashboard{
+    display: flex;
+    min-height: 88vh;
+    height: 88vh;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.dashboard .sidebar{
+    width: 220px;
+    background: var(--primary-color);
+    color: var(--background-light);
+    padding: 1em;
+    height: 100%;
+}
+.sidebar nav ul>li{
+    list-style: none;
+    margin: 1.5em 0;
+    padding: .5em 1em;
+    background: #375ea1;
+    transition: background 0.3s ease-in-out;
+}
+
+.sidebar nav ul>li:hover{
+    background: #4669a6;
+}
+
+.sidebar nav ul>li a{
+    color: var(--background-light);
+    text-decoration: none;
+    display: block;
+}
+
+.li-active{
+    border: 2px solid var(--background-light);
+}
+
 /* Responsiveness for small screens */
 @media screen and (max-width: 768px) {
 
     .top h1 {
         font-size: 1.5rem;
     }
-    
+
     .admin-login {
         width: 100%;
         max-width: 400px;

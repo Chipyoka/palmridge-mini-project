@@ -56,8 +56,8 @@ $user = $_SESSION['user'];
         <aside class="sidebar">
             <nav>
                 <ul>
-                    <li class="li-active"><a href="dashboard.php">Dashboard</a></li>
-                    <li><a href="manage_users.php">Users</a></li>
+                    <li><a href="dashboard.php">Dashboard</a></li>
+                    <li class="li-active"><a href="manage_users.php">Users</a></li>
                 </ul>
             </nav>
 
