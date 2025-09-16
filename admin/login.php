@@ -49,24 +49,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login – Zambezi Property</title>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-<div class="container card" style="max-width:400px;margin-top:60px;">
-    <h2>Admin Login</h2>
-    <?php if ($error): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($error); ?></p>
-    <?php endif; ?>
-    <form method="POST" action="">
-        <label>Email</label>
-        <input type="email" name="email" required>
 
-        <label>Password</label>
-        <input type="password" name="password" required>
+    <div class="top">
+        <h1>Advanced Real-Time Property Listing and Search System</h1>
+    </div>
+    <div class="admin-login">
+        <h2>Admin Login</h2>
+        <p class="desc">Please enter your credentials to access the admin panel.</p>
 
-        <button type="submit">Login</button>
-    </form>
-</div>
+        <!-- error message -->
+        <?php if ($error): ?>
+            <div class="error">
+                <p ><?php echo htmlspecialchars($error); ?></p>
+            </div>
+        <?php endif; ?>
+
+        <!-- form -->
+        <form method="POST" action="">
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" required>
+
+            <div class="login-btn">
+                <button id="adminLoginBtn" class="primary-btn w-full" type="submit">Login</button>
+            </div>
+        </form>
+
+        <p class="caption">By continuing, you agree to our <b>terms of service</b>.</p>
+    </div>
+
 </body>
+
+<!-- add js script -->
+<script src="/assets/js/main.js"></script>
 </html>

@@ -1,0 +1,193 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+/* ===== Global Reset & Base ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ===== Color Palette ===== */
+:root {
+    --primary-color: #1B488C;     /* Main brand blue */
+    --primary-color-h: #1A3E7A;   /* Darker shade for hover */
+    --secondary-color: #E81F29;   /* Accent yellow */
+    --background-light: #ffffff;
+    --text-dark: #333333;
+    --text-muted: #666666;
+    --border-color: #e0e0e0;
+    --gray: #E1E5E8;
+}
+
+/* ===== Global Components ===== */
+p{
+    color: var(--text-muted);
+}
+
+
+/* Cards / Panels */
+.card {
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Navigation Header */
+.navbar {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 15px 20px;
+}
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+}
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Tables (for admin listings) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+table th, table td {
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+table th {
+    background: #f0f0f0;
+}
+
+/* Forms */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+
+label{
+    text-align: left !important ;
+}
+
+.w-full{
+    width: 100%;
+}
+.primary-btn{
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+    padding: .75em 3em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+.primary-btn:hover{
+    background: var(--primary-color-h);
+}
+
+.caption{
+    font-size: .75rem !important;
+    color: var(--text-muted);
+    margin: 1em 0;
+}
+
+div.error {
+    width: 100%;
+    background: #ffe6e6;
+    border: 1px solid var(--secondary-color);
+    padding: .5em 1em;
+    margin: .75em 0;
+
+    border-radius: .25em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.error p{
+    color: var(--secondary-color) !important;
+    font-size: .85rem;
+    text-align: center;
+}
+
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
+
+/* Admin related CSS */
+
+.top {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-login{
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 20px;
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.admin-login h2, .desc {
+    text-align: center;
+}
+
+.admin-login p {
+    font-size: .95rem;
+}
+
+.admin-login .login-btn{
+    margin-top: 1em;
+}
+
+/* Responsiveness for small screens */
+@media screen and (max-width: 768px) {
+
+    .top h1 {
+        font-size: 1.5rem;
+    }
+    
+    .admin-login {
+        width: 100%;
+        max-width: 400px;
+        margin: 1em auto;
+        border: red 1px solid;
+    }
+}
+
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
