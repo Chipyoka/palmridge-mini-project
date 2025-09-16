@@ -21,11 +21,12 @@ body {
     --primary-color: #1B488C;     /* Main brand blue */
     --primary-color-h: #1A3E7A;   /* Darker shade for hover */
     --secondary-color: #E81F29;   /* Accent yellow */
+    --secondary-color-h: #D81B24;  /* Darker shade for hover */
     --background-light: #ffffff;
     --text-dark: #333333;
     --text-muted: #666666;
     --border-color: #e0e0e0;
-    --gray: #E1E5E8;
+    --gray: #f6f6f6;
 }
 
 /* ===== Global Components ===== */
@@ -107,7 +108,38 @@ label{
     cursor: pointer;
     transition: background 0.3s ease-in-out;
 }
-.primary-btn:hover{
+.primary-btn-sm{
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+
+    font-size: .85rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+    padding: .5em 2em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+.secondary-btn{
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+    padding: .5em 3em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+.secondary-btn:hover{
+    background: var(--secondary-color-h);
+}
+.primary-btn:hover, .primary-btn-sm:hover{
     background: var(--primary-color-h);
 }
 
@@ -150,6 +182,35 @@ div.error p{
     transition: background 0.3s ease-in-out;
     text-decoration: none;
 }
+
+/* text status colors */
+.text-success {
+    color: #28a745;
+}
+.text-warning {
+    color: #ffc107;
+}
+.text-danger {
+    color: #dc3545;
+}
+
+hr{
+
+   border: 1px solid #f1f1f1;
+    margin: .5em 0;
+}
+
+.mt-2{
+    margin-top: 1em;
+}
+
+.text-sm{
+    font-size: .75rem !important;
+}
+
+.capitalize{
+    text-transform: capitalize !important;
+}   
 
 /* ****************************************************** */
 /* ****************************************************** */
@@ -194,7 +255,7 @@ div.error p{
     display: flex;
     justify-content: space-between;
     align-self: center;
-    padding: 1em 1.5em;
+    padding: .5em 1.5em;
 
     background: var(--background-light);
 }
@@ -202,7 +263,7 @@ div.error p{
     color: var(--primary-color);
     display: flex;
     align-items: center;
-    font-size: .85rem;
+    font-size: .75rem;
     font-weight: 600;
     text-decoration: none;
     column-gap: 1em;
@@ -221,8 +282,8 @@ div.error p{
 
 .dashboard{
     display: flex;
-    min-height: 88vh;
-    height: 88vh;
+    min-height: 94vh;
+    height: 94vh;
     justify-content: space-between;
     align-items: flex-start;
 }
@@ -255,6 +316,104 @@ div.error p{
 .li-active{
     border: 2px solid var(--background-light);
 }
+
+.main-content{
+  width: 84%;
+  padding: 1em 2em;
+  height: 94vh;
+  overflow: hidden;
+  border: red solid 1px;
+}
+
+.main-content div.search-input{
+  width: 100%;
+  display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 1em;
+}
+.main-content div.search-input input{
+    margin-bottom: 0em;
+}
+div.filter-section{
+    margin: 1em 0;
+    padding: .5em;
+    background: var(--gray);
+    border: solid 1px var(--border-color);
+    border-radius: .25em;
+}
+div.all-filters{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .65em;
+
+    font-size: .85rem;
+}
+
+div.all-filters select{
+    width: 10em;
+    max-width: 10em;
+      font-size: .85rem;
+}
+div.all-filters input{
+    width: 10em;
+    max-width: 10em;
+    font-size: .85rem;
+}
+
+.main-content h5{
+    margin: 1em 0 .5em 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+div.property-cards{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
+
+    height: 60%;
+    overflow: auto;
+}
+div.property-cards .card{
+    width: 250px;
+    border: 1px solid var(--border-color);
+    padding: 1em;
+    border-radius: .25em;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+div.property-cards .card img{
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: .75em;
+}
+div.property-cards .card h4{
+    color: var(--primary-color);
+    margin-bottom: .25em;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.row-2{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: .25em;
+}
+p.action{
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
 
 /* Responsiveness for small screens */
 @media screen and (max-width: 768px) {
