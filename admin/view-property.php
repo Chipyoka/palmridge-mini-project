@@ -95,7 +95,7 @@ function timeAgo($datetime) {
 
         <div class="row">
             <div>
-                <p><strong>Price:</strong> $<?= number_format($property['price'],2); ?></p>
+                <p><strong>Price:</strong> K<?= number_format($property['price'],2); ?></p>
                 <p><strong>Rooms:</strong> <?= (int)$property['rooms']; ?></p>
 
             </div>
@@ -113,7 +113,10 @@ function timeAgo($datetime) {
         <hr>
 
         <div class="mt-4">
-            <button class="primary-btn" onclick="window.location.href='mailto:<?= urlencode($property['agent_email']); ?>'">
+            <button 
+                class="primary-btn" 
+                onclick="window.location.href='edit-property.php?id=<?= (int)$property['id']; ?>'"
+            >
             Edit Property
         </button>
         </div>

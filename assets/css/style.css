@@ -209,6 +209,9 @@ hr{
 .mt-2{
     margin-top: 1em;
 }
+.mt-3{
+    margin-top: 2em;
+}
 .mt-4{
     margin-top: 4em;
 }
@@ -418,6 +421,12 @@ div.property-cards .card h4.price{
     justify-content: space-between;
     align-items: center;
 }
+.row-3{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
+}
 .row-2{
     display: flex;
     justify-content: flex-start;
@@ -482,7 +491,16 @@ section.bids .bid-record p{
   text-wrap: nowrap;
 }
 
+/* edit property */
+.edit-property{
+    margin: 1em auto;
+    width: 35dvw;
+    max-width: 40dvw;
 
+    background: var(--background-light);
+    padding: 1em;
+    border-radius: .25em;
+}
 
 
 
@@ -536,7 +554,15 @@ section.bids .bid-record p{
     }
     .sm-none{
     display: none !important;
-}
+    }
+
+    /* edit property */
+    .edit-property{
+        margin: 1em auto;
+        width: 100dvw;
+        max-width: 100dvw;
+    }
+
 }
 
 /* ****************************************************** */
