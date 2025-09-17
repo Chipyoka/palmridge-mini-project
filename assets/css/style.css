@@ -225,6 +225,8 @@ hr{
     font-weight: 600 !important;
 }
 
+
+
 /* ****************************************************** */
 /* ****************************************************** */
 /* ****************************************************** */
@@ -475,10 +477,8 @@ section.bids .bid-record:hover{
     background: var(--gray);
 }
 section.bids .bid-record p{
-  width: 25%;
-  max-width: 25%;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+  width: 50%;
+  max-width: 50%;
   text-wrap: nowrap;
 }
 
@@ -506,6 +506,37 @@ section.bids .bid-record p{
         margin: 1em auto;
         border: red 1px solid;
     }
+
+    /* view property */
+    .property-view {
+        margin: 1em auto;
+        width: 100dvw;
+        max-width: 100dvw;
+    }
+    section.bids{
+        overflow-x: auto;
+        width: 100%;
+        max-width: 100%;
+    }
+    section.bids ul{
+        overflow: scroll;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    section.bids .bid-record{
+        width: fit-content;
+        max-width: fit-content;
+
+    }
+    section.bids .bid-record p{
+       width: 50%;
+        max-width: 50%;
+        text-wrap: nowrap;
+    }
+    .sm-none{
+    display: none !important;
+}
 }
 
 /* ****************************************************** */

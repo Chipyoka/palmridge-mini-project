@@ -29,7 +29,7 @@ if (!$property) {
 
 // Fetch bids newest first
 $bidsStmt = $conn->prepare("
-    SELECT b.*, u.name AS bidder_name, u.email AS bidder_email
+    SELECT b.*, u.name AS bidder_name, u.phone AS bidder_phone
     FROM bids b
     JOIN users u ON b.user_id = u.id
     WHERE b.property_id = ?
@@ -126,15 +126,15 @@ function timeAgo($datetime) {
         <?php if ($bids): ?>
             <ul>
                 <?php foreach ($bids as $bid): ?>
-                    <li class="bid-record bold bg-gray">
+                    <li class="bid-record bold bg-gray sm-none">
                         <p>Name</p>
-                        <p>Email</p>
+                        <p>Phone</p>
                         <p>Offer Amount</p>
                         <p>Date</p>
                     </li>
                     <li class="bid-record">
                         <p><strong><?= htmlspecialchars($bid['bidder_name']); ?></strong></p>
-                        <p><?= htmlspecialchars($bid['bidder_email']); ?></p>
+                        <p><?= htmlspecialchars($bid['bidder_phone']); ?></p>
                         <p>K<?= number_format($bid['amount'],2); ?></p>
                         <p><?= timeAgo($bid['created_at']); ?></p>
                     </li>
