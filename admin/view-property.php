@@ -78,17 +78,46 @@ function timeAgo($datetime) {
 <main class="property-view">
     <!-- Main Property Card -->
     <section class="property-card">
-        <h2><?= htmlspecialchars($property['title']); ?></h2>
-        <p><?= nl2br(htmlspecialchars($property['description'])); ?></p>
-        <p><strong>Price:</strong> $<?= number_format($property['price'],2); ?></p>
-        <p><strong>Rooms:</strong> <?= (int)$property['rooms']; ?></p>
-        <p><strong>Location:</strong> <?= htmlspecialchars($property['location']); ?></p>
-        <p><strong>Status:</strong> <?= htmlspecialchars($property['status']); ?></p>
+
+    <aside class="property-image">
+           <img src="<?= htmlspecialchars($property['image_path'] ?? '/assets/images/default-property.png') ?>" alt="Property Image">
+    </aside>
+    <aside>
+        <div class="row">
+            <h2><?= htmlspecialchars($property['title']); ?></h2>
+            <p class="action">For <?= htmlspecialchars($property['action']); ?></p>
+
+        </div>
+        <p><?= htmlspecialchars($property['description']); ?></p>
+       
+
+        <hr>
+
+        <div class="row">
+            <div>
+                <p><strong>Price:</strong> $<?= number_format($property['price'],2); ?></p>
+                <p><strong>Rooms:</strong> <?= (int)$property['rooms']; ?></p>
+
+            </div>
+            <div>
+                <p><strong>Location:</strong> <?= htmlspecialchars($property['location']); ?></p>
+                <p><strong>Status:</strong> <?= htmlspecialchars($property['status']); ?></p>
+
+            </div>
+        </div>
+
+        <hr>
+
         <p><strong>Posted:</strong> <?= timeAgo($property['created_at']); ?></p>
-        <button onclick="window.location.href='mailto:<?= urlencode($property['agent_email']); ?>'">
-            Call Agent
+
+        <hr>
+
+        <div class="mt-4">
+            <button class="primary-btn" onclick="window.location.href='mailto:<?= urlencode($property['agent_email']); ?>'">
+            Edit Property
         </button>
-        <button onclick="alert('Bid placement flow to be implemented')">Place Bid</button>
+        </div>
+    </aside>
     </section>
 
     <!-- Bids Section -->
@@ -97,11 +126,17 @@ function timeAgo($datetime) {
         <?php if ($bids): ?>
             <ul>
                 <?php foreach ($bids as $bid): ?>
-                    <li>
-                        <strong><?= htmlspecialchars($bid['bidder_name']); ?></strong>
-                        (<?= htmlspecialchars($bid['bidder_email']); ?>)
-                        – $<?= number_format($bid['amount'],2); ?>
-                        – <?= timeAgo($bid['created_at']); ?>
+                    <li class="bid-record bold bg-gray">
+                        <p>Name</p>
+                        <p>Email</p>
+                        <p>Offer Amount</p>
+                        <p>Date</p>
+                    </li>
+                    <li class="bid-record">
+                        <p><strong><?= htmlspecialchars($bid['bidder_name']); ?></strong></p>
+                        <p><?= htmlspecialchars($bid['bidder_email']); ?></p>
+                        <p>K<?= number_format($bid['amount'],2); ?></p>
+                        <p><?= timeAgo($bid['created_at']); ?></p>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -110,20 +145,8 @@ function timeAgo($datetime) {
         <?php endif; ?>
     </section>
 
-    <!-- Similar Properties -->
-    <section class="similar">
-        <h3>Similar Properties</h3>
-        <div class="similar-grid">
-            <?php foreach ($similar as $sim): ?>
-                <div class="similar-card">
-                    <h4><?= htmlspecialchars($sim['title']); ?></h4>
-                    <p>$<?= number_format($sim['price'],2); ?></p>
-                    <p><?= htmlspecialchars($sim['location']); ?></p>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
 </main>
+
 </body>
 </html>
 <?php
