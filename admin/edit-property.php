@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </label>
 
         <label>Description
-            <textarea name="description" rows="5" required><?= htmlspecialchars($property['description']); ?></textarea>
+            <textarea name="description" rows="3" required><?= htmlspecialchars($property['description']); ?></textarea>
         </label>
 
         <hr>

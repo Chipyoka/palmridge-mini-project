@@ -3,19 +3,24 @@ session_name('ADMINSESSID');
 session_start();
 require_once __DIR__ . '/../includes/db.php';
 
-// Capture property ID either from POST or an existing sessio
-
+// Capture property ID either from POST or an existing session
 $propertyId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 if ($propertyId <= 0) {
     header('Location: dashboard.php');
     exit;
 }
 
-// Fetch property details
+// Fetch property details with image_path using the same logic as dashboard.php
 $stmt = $conn->prepare("
-    SELECT p.*, u.name AS agent_name, u.email AS agent_email
+    SELECT p.*, u.name AS agent_name, u.email AS agent_email, COALESCE(i.image_path, '') AS image_path
     FROM properties p
     LEFT JOIN users u ON p.agent_id = u.id
+    LEFT JOIN (
+        SELECT property_id, MIN(id) AS first_image_id
+        FROM images
+        GROUP BY property_id
+    ) fi ON p.id = fi.property_id
+    LEFT JOIN images i ON i.id = fi.first_image_id
     WHERE p.id = ?
     LIMIT 1
 ");
@@ -41,9 +46,16 @@ $bids = $bidsStmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
 // Fetch up to 4 similar properties (same action & price <= target)
 $similarStmt = $conn->prepare("
-    SELECT * FROM properties
-    WHERE action = ? AND price <= ? AND id <> ?
-    ORDER BY price DESC
+    SELECT p.*, COALESCE(i.image_path, '') AS image_path
+    FROM properties p
+    LEFT JOIN (
+        SELECT property_id, MIN(id) AS first_image_id
+        FROM images
+        GROUP BY property_id
+    ) fi ON p.id = fi.property_id
+    LEFT JOIN images i ON i.id = fi.first_image_id
+    WHERE p.action = ? AND p.price <= ? AND p.id <> ?
+    ORDER BY p.price DESC
     LIMIT 4
 ");
 $similarStmt->bind_param('sdi', $property['action'], $property['price'], $propertyId);
@@ -58,6 +70,11 @@ function timeAgo($datetime) {
     if ($diff < 604800) return floor($diff/86400).' days ago';
     return 'old';
 }
+
+// Determine image source with fallback logic (same as dashboard.php)
+$imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image_path'])
+          ? '/'.$property['image_path']
+          : '/assets/images/default-property.png';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,49 +95,44 @@ function timeAgo($datetime) {
 <main class="property-view">
     <!-- Main Property Card -->
     <section class="property-card">
-
-    <aside class="property-image">
-           <img src="<?= htmlspecialchars($property['image_path'] ?? '/assets/images/default-property.png') ?>" alt="Property Image">
-    </aside>
-    <aside>
-        <div class="row">
-            <h2><?= htmlspecialchars($property['title']); ?></h2>
-            <p class="action">For <?= htmlspecialchars($property['action']); ?></p>
-
-        </div>
-        <p><?= htmlspecialchars($property['description']); ?></p>
-       
-
-        <hr>
-
-        <div class="row">
-            <div>
-                <p><strong>Price:</strong> K<?= number_format($property['price'],2); ?></p>
-                <p><strong>Rooms:</strong> <?= (int)$property['rooms']; ?></p>
-
+        <aside class="property-image">
+            <img src="<?= htmlspecialchars($imgSrc) ?>" alt="Property Image">
+        </aside>
+        <aside class="property-details">
+            <div class="row">
+                <h2><?= htmlspecialchars($property['title']); ?></h2>
+                <p class="action">For <?= htmlspecialchars($property['action']); ?></p>
             </div>
-            <div>
-                <p><strong>Location:</strong> <?= htmlspecialchars($property['location']); ?></p>
-                <p><strong>Status:</strong> <?= htmlspecialchars($property['status']); ?></p>
+            <p><?= htmlspecialchars($property['description']); ?></p>
+           
+            <hr>
 
+            <div class="row">
+                <div>
+                    <p><strong>Price:</strong> K<?= number_format($property['price'],2); ?></p>
+                    <p><strong>Rooms:</strong> <?= (int)$property['rooms']; ?></p>
+                </div>
+                <div>
+                    <p><strong>Location:</strong> <?= htmlspecialchars($property['location']); ?></p>
+                    <p><strong>Status:</strong> <?= htmlspecialchars($property['status']); ?></p>
+                </div>
             </div>
-        </div>
 
-        <hr>
+            <hr>
 
-        <p><strong>Posted:</strong> <?= timeAgo($property['created_at']); ?></p>
+            <p><strong>Posted:</strong> <?= timeAgo($property['created_at']); ?></p>
 
-        <hr>
+            <hr>
 
-        <div class="mt-4">
-            <button 
-                class="primary-btn" 
-                onclick="window.location.href='edit-property.php?id=<?= (int)$property['id']; ?>'"
-            >
-            Edit Property
-        </button>
-        </div>
-    </aside>
+            <div class="mt-4">
+                <button 
+                    class="primary-btn" 
+                    onclick="window.location.href='edit-property.php?id=<?= (int)$property['id']; ?>'"
+                >
+                Edit Property
+            </button>
+            </div>
+        </aside>
     </section>
 
     <!-- Bids Section -->
@@ -148,6 +160,48 @@ function timeAgo($datetime) {
         <?php endif; ?>
     </section>
 
+    <!-- Similar Properties Section -->
+    <?php if ($similar): ?>
+    <section class="similar-properties">
+        <h3>Similar Properties</h3>
+        <div class="property-cards">
+            <?php foreach($similar as $similarProp): ?>
+                <?php
+                    $similarImgSrc = $similarProp['image_path'] && file_exists(__DIR__.'/../'.$similarProp['image_path'])
+                                  ? '/'.$similarProp['image_path']
+                                  : '/assets/images/default-property.png';
+                ?>
+                <div class="card">
+                    <img src="<?= htmlspecialchars($similarImgSrc) ?>" alt="Similar Property Image">
+                    <div class="row">
+                        <p class="text-sm"><?= timeAgo($similarProp['created_at']) ?></p>
+                        <p class="text-sm capitalize 
+                           <?= $similarProp['status']==='available'?'text-success':($similarProp['status']==='pending'?'text-warning':'text-danger') ?>">
+                            <strong><?= htmlspecialchars($similarProp['status']) ?></strong>
+                        </p>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <p class="action">For <?= htmlspecialchars($similarProp['action']) ?></p>
+                        <h4 class="price">K<?= number_format($similarProp['price'],2) ?></h4>
+                    </div>
+                    <h4 title="<?= htmlspecialchars($similarProp['title']) ?>">
+                        <?= htmlspecialchars(substr($similarProp['title'],0,24)) ?>
+                    </h4>
+                    <hr>
+                    <div class="row-2 text-sm">
+                        <p><?= (int)$similarProp['rooms'] ?> rooms</p>
+                        <p>in <strong><?= htmlspecialchars($similarProp['location']) ?></strong></p>
+                    </div>
+                    <div class="mt-2">
+                        <button onclick="window.location.href='view-property.php?id=<?= (int)$similarProp['id'] ?>'"
+                                class="primary-btn-sm w-full">View Details</button>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
 </main>
 
 </body>
