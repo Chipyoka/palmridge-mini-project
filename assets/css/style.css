@@ -8,9 +8,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif !important;
+
+}
+
+button{
+    font-family: 'Poppins', sans-serif !important;
 }
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     background-color: #f5f7fa;
     color: #333;
     line-height: 1.6;
@@ -322,7 +328,6 @@ hr{
   padding: 1em 2em;
   height: 94vh;
   overflow: hidden;
-  border: red solid 1px;
 }
 
 .main-content div.search-input{
@@ -350,6 +355,7 @@ div.all-filters{
     gap: .65em;
 
     font-size: .85rem;
+    font-family: 'Poppins', 'sans-serif';
 }
 
 div.all-filters select{
@@ -393,7 +399,7 @@ div.property-cards .card img{
     object-fit: cover;
     margin-bottom: .75em;
 }
-div.property-cards .card h4{
+div.property-cards .card h4.price{
     color: var(--primary-color);
     margin-bottom: .25em;
 }
@@ -414,6 +420,8 @@ p.action{
     font-weight: 600;
 }
 
+
+/* View property */
 
 /* Responsiveness for small screens */
 @media screen and (max-width: 768px) {

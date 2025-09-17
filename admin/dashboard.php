@@ -110,12 +110,12 @@ function timeAgo($datetime) {
     <header>
         <div class="top-bar">
             <div class="logo">
-                <img src="/assets/images/logo.png" alt="Zambezi Diamond ARPLSS Logo" height="30px">
+                <img src="/assets/images/logo.png" alt="Zambezi Diamond ARPLSS Logo" height="36px">
                 <?php
                 if ((int)$user['is_admin'] === 1) {
-                    echo '<h1>Admin Dashboard</h1>';
+                    echo '<h2>Admin Dashboard</h2>';
                 } else {
-                    echo '<h1>Staff Dashboard</h1>';
+                    echo '<h2>Staff Dashboard</h2>';
                 }
                 ?>
             </div>
@@ -254,12 +254,12 @@ function timeAgo($datetime) {
                             <div class="row">
 
                                 <p class="action">For <?= htmlspecialchars($prop['action']) ?></p>
-                                <h4> K<?= number_format($prop['price'],2) ?></h4>
+                                <h4 class="price"> K<?= number_format($prop['price'],2) ?></h4>
 
                             </div>
-                            <h3 
+                            <h4 
                                 title="<?= htmlspecialchars($prop['title']) ?>"
-                            ><?= htmlspecialchars(substr($prop['title'],0,24)) ?></h3>
+                            ><?= htmlspecialchars(substr($prop['title'],0,24)) ?></h4>
 
                           
                             <hr>
@@ -270,7 +270,12 @@ function timeAgo($datetime) {
                             </div>
                         
 
-                             <div class="mt-2"><button class="primary-btn w-full">View Details</button></div>
+                             <div class="mt-2">
+                                <button 
+                                    onclick="window.location.href='view-property.php?id=<?= (int)$prop['id']; ?>'"
+                                    class="primary-btn-sm w-full"
+                                >View Details </button>
+                            </div>
                            
                         </div>
                     <?php endforeach; ?>
