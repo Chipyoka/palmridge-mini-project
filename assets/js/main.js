@@ -8,3 +8,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     });
 });
+
+// Auto-hide alert messages after 5 seconds
+document.addEventListener('DOMContentLoaded', function() {
+    const alertBox = document.getElementById('alertBox');
+    const alertBox2 = document.getElementById('alertBox2');
+   if (alertBox) {
+       setTimeout(function() {
+           alertBox.style.display = 'none';
+       }, 5000);
+   }
+   if (alertBox2) {
+       setTimeout(function() {
+           alertBox2.style.display = 'none';
+       }, 5000);
+   }
+});
+
+// reset advanced search filters when clear button is clicked
+
+document.addEventListener('DOMContentLoaded', function() {
+    const clearButton = document.getElementById('clearFilters');
+    
+    if (clearButton) {
+        clearButton.addEventListener('click', function() {
+            // Simply redirect to the dashboard page without any query parameters
+            window.location.href = 'dashboard.php';
+        });
+    }
+});

@@ -133,7 +133,21 @@ function timeAgo(string $datetime): string
         <div class="logo">
             <img src="/assets/images/logo.png" alt="Logo" height="36">
             <h2><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard</h2>
+            <div>
+                <?php
+                if (isset($_SESSION['success'])) {
+                    echo '<div id="alertBox"  class="alert alert-success">' . htmlspecialchars($_SESSION['success']) . '</div>';
+                    unset($_SESSION['success']);
+                }
+
+                if (isset($_SESSION['error'])) {
+                    echo '<div id="alertBox" class="alert alert-error">' . htmlspecialchars($_SESSION['error']) . '</div>';
+                    unset($_SESSION['error']);
+                }
+                ?>
+            </div>
         </div>
+    
         <div class="user-actions">
             <span class="username"><?= htmlspecialchars($user['name']); ?></span> |
             <span class="email"><?= htmlspecialchars($user['email']); ?></span>
@@ -159,9 +173,14 @@ function timeAgo(string $datetime): string
                 <!-- Search Input --> 
                 <input type="text" name="search" placeholder="Search by title or description" value="<?= htmlspecialchars($searchTerm) ?>"> 
                 <button class="secondary-btn" type="submit">Search</button> 
-            </div> 
-            <div class="filter-section"> 
-                <h5>Advanced Filters</h5> 
+                <?php
+                // Clear all filters button
+                if ($searchTerm || $category || $action || $status || $location || $minPrice || $maxPrice || $rooms || $datePosted): ?>
+                <button class="logout" type="button" id="clearFilters">Clear</button>
+                <?php endif; ?>
+            </div>
+            <div class="filter-section">
+                <h5>Advanced Filters</h5>
                 <div class="all-filters"> 
                     <!-- Category Filter --> 
                     <select name="category"> 

@@ -100,11 +100,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $imgStmt->close();
                 }
 
-                $success = "Property successfully added.";
+                // Store success message in session and redirect to prevent resubmission
+                $_SESSION['form_success'] = "Property successfully added.";
+                $_SESSION['form_data'] = []; // Clear any stored form data
+                
+                // Redirect to same page using GET method (PRG pattern)
+                header('Location: ' . $_SERVER['PHP_SELF']);
+                exit;
             }
             $stmt->close();
         }
     }
+    
+    // If we have errors, store form data to repopulate fields
+    if ($errors) {
+        $_SESSION['form_data'] = [
+            'title' => $title,
+            'description' => $description,
+            'price' => $price,
+            'rooms' => $rooms,
+            'location' => $location,
+            'category' => $category,
+            'property_type' => $property_type,
+            'action' => $action,
+            'status' => $status,
+            'is_furnished' => $is_furnished
+        ];
+    }
+}
+
+// Check for success message from session (after redirect)
+if (isset($_SESSION['form_success'])) {
+    $success = $_SESSION['form_success'];
+    unset($_SESSION['form_success']);
+}
+
+// Check for stored form data (for repopulating after errors)
+$formData = $_SESSION['form_data'] ?? [];
+if (isset($_SESSION['form_data'])) {
+    unset($_SESSION['form_data']);
 }
 ?>
 <!DOCTYPE html>
@@ -123,84 +157,84 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </header>
 
-<main class=" add-property">
+<main class="add-property">
     <?php if ($errors): ?>
-        <div class="error">
+        <div id="alertBox2" class="alert-error">
             <ul><?php foreach ($errors as $e) echo "<li>".htmlspecialchars($e)."</li>"; ?></ul>
         </div>
     <?php elseif ($success): ?>
-        <div class="alert success"><?= htmlspecialchars($success) ?></div>
+        <div id="alertBox2" class="alert-success"><?= htmlspecialchars($success) ?></div>
     <?php endif; ?>
 
-    <form method="post" enctype="multipart/form-data" class="property-form" novalidate>
+    <form method="post" enctype="multipart/form-data" class="property-form mt-2" novalidate>
         <label>Photo (max 2 MB)
             <input type="file" name="photo" accept="image/*">
         </label>
 
         <label>Title
-            <input type="text" name="title" required>
+            <input type="text" name="title" value="<?= htmlspecialchars($formData['title'] ?? '') ?>" required>
         </label>
 
         <label>Description
-            <textarea name="description" rows="3" required></textarea>
+            <textarea name="description" rows="3" required><?= htmlspecialchars($formData['description'] ?? '') ?></textarea>
         </label>
 
         <hr>
 
         <div class="row-3 mt-3">
             <label>Price
-                <input type="number" name="price" step="0.01" required>
+                <input type="number" name="price" step="0.01" value="<?= htmlspecialchars($formData['price'] ?? '') ?>" required>
             </label>
             <label>Rooms
-                <input type="number" name="rooms" min="0">
+                <input type="number" name="rooms" min="0" value="<?= htmlspecialchars($formData['rooms'] ?? '') ?>">
             </label>
         </div>
         
         <div class="row-3">
             <label>Location
-                <input type="text" name="location">
+                <input type="text" name="location" value="<?= htmlspecialchars($formData['location'] ?? '') ?>">
             </label>
             <label>Category
-                <input type="text" name="category">
+                <input type="text" name="category" value="<?= htmlspecialchars($formData['category'] ?? '') ?>">
             </label>
-           
-          
         </div>
 
-         <label>Property Type
-                <input type="text" name="property_type">
+        <label>Property Type
+            <input type="text" name="property_type" value="<?= htmlspecialchars($formData['property_type'] ?? '') ?>">
         </label>
 
         <hr>
 
-       <div class="mt-3"></div>
+        <div class="mt-3"></div>
 
-              <label>Action
-                <select name="action">
-                    <option value="sale">For Sale</option>
-                    <option value="rent">For Rent</option>
-                </select>
-            </label>
+        <label>Action
+            <select name="action">
+                <option value="sale" <?= ($formData['action'] ?? 'sale') === 'sale' ? 'selected' : '' ?>>For Sale</option>
+                <option value="rent" <?= ($formData['action'] ?? 'sale') === 'rent' ? 'selected' : '' ?>>For Rent</option>
+            </select>
+        </label>
 
         <div class="row-3">
             <label>Status
                 <select name="status">
-                    <option value="available">Available</option>
-                    <option value="sold">Sold</option>
-                    <option value="rented">Rented</option>
+                    <option value="available" <?= ($formData['status'] ?? 'available') === 'available' ? 'selected' : '' ?>>Available</option>
+                    <option value="sold" <?= ($formData['status'] ?? 'available') === 'sold' ? 'selected' : '' ?>>Sold</option>
+                    <option value="rented" <?= ($formData['status'] ?? 'available') === 'rented' ? 'selected' : '' ?>>Rented</option>
                 </select>
             </label>
             <label>Furnished
                 <select name="is_furnished">
-                    <option value="1">Yes</option>
-                    <option value="0">No</option>
+                    <option value="1" <?= ($formData['is_furnished'] ?? 0) == 1 ? 'selected' : '' ?>>Yes</option>
+                    <option value="0" <?= ($formData['is_furnished'] ?? 0) == 0 ? 'selected' : '' ?>>No</option>
                 </select>
             </label>
-         
         </div>
 
         <button class="primary-btn w-full mt-2" type="submit">Add Property</button>
     </form>
 </main>
+
+<!-- Add main.js -->
+<script src="/assets/js/main.js"></script>
 </body>
 </html>

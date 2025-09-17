@@ -124,12 +124,18 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
 
             <hr>
 
-            <div class="mt-4">
+            <div class="mt-4 flex">
                 <button 
                     class="primary-btn" 
                     onclick="window.location.href='edit-property.php?id=<?= (int)$property['id']; ?>'"
                 >
                 Edit Property
+            </button>
+            <button 
+                class="danger-btn" 
+                onclick="confirmDelete(<?= (int)$property['id']; ?>)"
+            >
+                Delete Property
             </button>
             </div>
         </aside>
@@ -205,6 +211,13 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
 </main>
 
 </body>
+    <script>
+        function confirmDelete(propertyId) {
+            if (confirm('Are you sure you want to delete this property? This action cannot be undone.')) {
+                window.location.href = 'delete-property.php?id=' + propertyId;
+            }
+        }
+    </script>
 </html>
 <?php
 // Clear selection when returning to dashboard

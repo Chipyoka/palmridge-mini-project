@@ -114,6 +114,20 @@ label{
     cursor: pointer;
     transition: background 0.3s ease-in-out;
 }
+.danger-btn{
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+
+    padding: .75em 1.5em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
 .primary-btn-sm{
     background: var(--primary-color);
     color: #fff;
@@ -175,6 +189,7 @@ div.error p{
 }
 
 .logout{
+    background-color: var(--background-light);
     color: var(--secondary-color);
     border: 2px solid var(--secondary-color);
 
@@ -228,6 +243,27 @@ hr{
     font-weight: 600 !important;
 }
 
+.flex{
+    display: flex !important;
+    justify-content: flex-start !important;
+    gap: 1em !important;
+    align-items: center !important;
+}
+
+.alert-success{
+    color: #28a745;
+    background: #e6f4ea;
+    border: 1px solid #28a745;
+    padding: .25em .75em;
+    text-align: center;
+}
+.alert-error{
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+    padding: .25em .75em;
+    text-align: center;
+}
 
 
 /* ****************************************************** */
@@ -442,7 +478,7 @@ p.action{
 /* View property */
 .property-view {
    margin: 1em auto;
-   width: 55dvw;
+   width: 60dvw;
    max-width: 60dvw;
 }
 .property-view .property-card{
