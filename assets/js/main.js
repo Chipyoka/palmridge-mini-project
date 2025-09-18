@@ -124,3 +124,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, 5000);
 });
+
+
+// Lets make agent modal open and close
+document.addEventListener('DOMContentLoaded', function() {
+    const openModalBtn = document.getElementById('openModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const modal = document.getElementById('modal');
+
+
+    if (openModalBtn && modal) {
+        openModalBtn.addEventListener('click', function() {
+            
+            // add
+            modal.style.display = 'flex';
+        });
+    }
+    if (closeModalBtn && modal) {
+        closeModalBtn.addEventListener('click', function() {
+            // rem
+            modal.style.display = 'none';
+        });
+    }
+
+
+});

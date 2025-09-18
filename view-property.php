@@ -12,7 +12,7 @@ if ($propertyId <= 0) {
 
 // Fetch property details with image_path using the same logic as dashboard.php
 $stmt = $conn->prepare("
-    SELECT p.*, u.name AS agent_name, u.email AS agent_email, COALESCE(i.image_path, '') AS image_path
+    SELECT p.*, u.name AS agent_name, u.phone AS agent_phone, COALESCE(i.image_path, '') AS image_path
     FROM properties p
     LEFT JOIN users u ON p.agent_id = u.id
     LEFT JOIN (
@@ -153,19 +153,35 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
             <div class="mt-4 flex">
                 <button 
                     class="primary-btn" 
-                    id='callAgent'
+                    id="openModal"
                 >
                 Call Agent
             </button>
             <button 
                 class="primary-btn-outlined" 
-                onclick="confirmDelete(<?= (int)$property['id']; ?>)"
+                onclick="checkLogin()"
             >
                 Place a bid
             </button>
             </div>
         </aside>
     </section>
+
+    <!-- show agent contact details pop up -->
+     <div id="modal" class="backdrop">
+        <div class="message capitalize">
+            <p >Below are the agent contact details</p>
+
+            <hr>
+
+            <label >Name</label>
+            <h3><?= htmlspecialchars($property['agent_name']); ?></h3>
+            <div class="mt-2"></div>
+            <label >Phone</label>
+            <h3><?= htmlspecialchars($property['agent_phone']); ?></h3>
+            <button class="badge-primary-outlined mt-3" id="closeModal"> Close</button>
+        </div>
+     </div>
 
     <!-- Similar Properties Section -->
     <?php if ($similar): ?>
@@ -212,13 +228,19 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
 </main>
 
 </body>
-    <script>
-        function confirmDelete(propertyId) {
-            if (confirm('Are you sure you want to delete this property? This action cannot be undone.')) {
-                window.location.href = 'delete-property.php?id=' + propertyId;
-            }
-        }
-    </script>
+
+<script src="assets/js/main.js"></script>
+<script>
+    function checkLogin() {
+        <?php if (!isset($_SESSION['user'])): ?>
+            alert("You must be logged in to continue.");
+            window.location.href = "login.php";
+        <?php else: ?>
+            window.location.href = "place-bid.php"; // logged-in users
+        <?php endif; ?>
+    }
+   
+</script>
 </html>
 <?php
 // Clear selection when returning to dashboard
