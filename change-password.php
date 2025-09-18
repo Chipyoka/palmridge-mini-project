@@ -1,17 +1,21 @@
 <?php
-// Start sessions for both types
-// Determine "back" URL based on session type
+// --- Start the correct session first ---
 if (isset($_COOKIE['ADMINSESSID'])) {
     session_name('ADMINSESSID');
-    session_start();
-    $returnUrl = 'admin/dashboard.php';
-} elseif (isset($_COOKIE['USERSESSID'])) {
-    session_name('USERSESSID');
-    session_start();
-    $returnUrl = 'index.php';
 } else {
-    $returnUrl = 'index.php'; // fallback if no session exists
+    // default to normal user session
+    session_name('USERSESSID');
 }
+session_start();
+
+// --- Decide where the "Back" link should go ---
+if (isset($_SESSION['user']) && isset($_SESSION['user']['is_admin']) && (int)$_SESSION['user']['is_admin'] === 1) {
+    $returnUrl = 'admin/dashboard.php';
+} else {
+    $returnUrl = 'index.php';
+}
+
+
 
 require_once __DIR__ . '/config/config.php';
 require_once __DIR__ . '/vendor/autoload.php'; // PHPMailer

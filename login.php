@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($user && password_verify($password, $user['password'])) {
             // Ensure the user has no admin rights
-            if ((int)$user['is_admin'] === 0 || (int)$user['is_staff'] === 0) {
+            if ((int)$user['is_admin'] === 0 && (int)($user['is_staff'] ?? 0) === 0) {
                 // Store entire user record (minus password) in session
                 unset($user['password']);
                 $_SESSION['user'] = $user;
