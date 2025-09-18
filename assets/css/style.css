@@ -916,6 +916,41 @@ section.bids .bid-record p{
 
 
 
+.user-login{
+    max-width: 400px;
+    margin: 60px auto;
+    padding: 20px;
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.user-login h2, .desc {
+    text-align: center;
+}
+
+.user-login p {
+    font-size: .95rem;
+}
+
+.user-login .login-btn{
+    margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Responsiveness for small screens */
 @media screen and (max-width: 768px) {
