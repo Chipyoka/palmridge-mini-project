@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
 
         <p class="caption">By continuing, you agree to our <b>terms of service</b>.</p>
+        <p class="hyperlink"><a href="/admin/reset-password.php">Forgot password? Reset</a></p>
     </div>
 
 </body>

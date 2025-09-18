@@ -22,6 +22,8 @@ assets/images/properties/
 config/config.php
 includes/db.php
 
+vendor/
+
 # Ignore compiled CSS / JS if you use preprocessors
 assets/css/*.min.css
 assets/js/*.min.js

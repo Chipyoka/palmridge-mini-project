@@ -310,6 +310,15 @@ button:disabled, .badge-primary-outlined:disabled {
     cursor: not-allowed;
 }
 
+.hyperlink a{
+    text-decoration: none;
+    font-size: .85rem;
+    color: var(--primary-color);
+}
+.hyperlink a:hover{
+    text-decoration: underline;
+}
+
 /* ****************************************************** */
 /* ****************************************************** */
 /* ****************************************************** */
