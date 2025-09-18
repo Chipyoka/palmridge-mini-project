@@ -160,7 +160,7 @@ $stmt->close();
     <header>
         <div class="top-bar">
             <div class="logo">
-                <button id="menuBtn" class="menu-toggle sm-only">=</button>
+                <button id="menuBtn" class="primary-btn-sm sm-only">=</button>
                 <img src="/assets/images/logo.png" alt="Logo" height="36">
                 <h2 class="sm-none"><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard - Manage Users</h2>
                 <div class="alert-container">
@@ -189,7 +189,7 @@ $stmt->close();
 
     <main class="dashboard">
         <!-- side navigation -->
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar sm-none" id="sidebar">
             <nav>
                 <ul>
                     <li><a href="dashboard.php">Dashboard</a></li>
@@ -216,15 +216,16 @@ $stmt->close();
 
             <!-- render all users as row records with buttons to make admin, make staff, and delete -->
             <div class="users-table-container mt-3">
+                <p class="caption-warning sm-only"><strong>Warning:</strong> Use a laptop or desktop to see full user actions.</p>
                 <?php if ($users): ?>
                     <table class="users-table">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Phone</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Joined</th>
+                                <th class="sm-none">Email</th>
+                                <th >Role</th>
+                                <th class="sm-none">Joined</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -234,25 +235,25 @@ $stmt->close();
                                 <tr>
                                     <td><?= htmlspecialchars($userRow['name']) ?></td>
                                     <td><?= htmlspecialchars($userRow['phone']) ?></td>
-                                    <td><?= htmlspecialchars($userRow['email']) ?></td>
+                                    <td class="sm-none"><?= htmlspecialchars($userRow['email']) ?></td>
                                     <td>
                                         <span class="role-badge <?= $userRow['is_admin'] ? 'admin' : ($userRow['is_staff'] ? 'staff' : 'user') ?>">
                                             <?= $userRow['is_admin'] ? 'Admin' : ($userRow['is_staff'] ? 'Staff' : 'User') ?>
                                         </span>
                                     </td>
-                                    <td><?= date('M j, Y', strtotime($userRow['created_at'])) ?></td>
+                                    <td class="sm-none"><?= date('M j, Y', strtotime($userRow['created_at'])) ?></td>
                                     <td class="actions">
                                         <form method="post" class="action-form">
                                             <input type="hidden" name="user_id" value="<?= $userRow['id'] ?>">
                                             
                                             <!-- Staff Actions -->
                                             <?php if (!$userRow['is_staff']): ?>
-                                                <button type="submit" name="action" value="make_staff" class="badge-primary-outlined" 
+                                                <button type="submit" name="action" value="make_staff" class="badge-primary-outlined sm-none" 
                                                         onclick="return confirm('Make this user a staff member?')">
                                                     Make Staff
                                                 </button>
                                             <?php else: ?>
-                                                <button type="submit" name="action" value="remove_staff" class="badge-primary-outlined"
+                                                <button type="submit" name="action" value="remove_staff" class="badge-primary-outlined sm-none"
                                                         onclick="return confirm('Remove staff status from this user?')"
                                                         <?= $userRow['is_admin'] ? 'disabled title="Cannot remove staff status from admin"' : '' ?>>
                                                     Remove Staff
@@ -261,12 +262,12 @@ $stmt->close();
                                             
                                             <!-- Admin Actions -->
                                             <?php if (!$userRow['is_admin']): ?>
-                                                <button type="submit" name="action" value="make_admin" class="badge-primary"
+                                                <button type="submit" name="action" value="make_admin" class="badge-primary sm-none"
                                                         onclick="return confirm('Make this user an admin? They will automatically become staff as well.')">
                                                     Make Admin
                                                 </button>
                                             <?php else: ?>
-                                                <button type="submit" name="action" value="remove_admin" class="badge-primary"
+                                                <button type="submit" name="action" value="remove_admin" class="badge-primary sm-none"
                                                         onclick="return confirm('Remove admin privileges from this user?')">
                                                     Remove Admin
                                                 </button>
