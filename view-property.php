@@ -1,5 +1,6 @@
 <?php
-
+session_name('USERSESSID');
+session_start();
 require_once __DIR__ . '/includes/db.php';
 
 // Capture property ID either from POST or an existing session
@@ -92,18 +93,27 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
             </div>
         </div>
     
-        <div class="user-actions">
-            <a class="logout" href="admin/login.php">Staff Login</a>
-            |
-            <a class="logout sm-none" href="login.php">Login</a>
-            <a class="primary-btn-sm" href="register.php">Register</a>
-        </div>
+       
+            <!-- if user is logged in to display a button to profile page -->
+
+            <!-- If user is logged in, display a button to profile page -->
+            <?php if (!isset($_SESSION['user'])): ?>
+                <div class="user-actions">
+                    <a class="logout" href="admin/login.php">Staff Login</a> |
+                    <a class="logout sm-none" href="login.php">Login</a>
+                    <a class="primary-btn-sm" href="register.php">Register</a>
+                </div>
+            <?php else: ?>
+                <div class="user-actions">
+                    <a class="primary-btn-sm" href="user-profile.php">Visit Profile</a>
+                </div>
+            <?php endif; ?>
     </div>
     <div class="top-bar">
 
         <div class="logo"><h1>Property Details</h1></div>
         <div class="user-actions">
-            <a class="logout" href="index.php?return=1">Return</a>
+            <a class="logout" href="index.php?return=1">Close</a>
         </div>
     </div>
 </header>

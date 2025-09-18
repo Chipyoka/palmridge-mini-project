@@ -55,9 +55,16 @@ function timeAgo($datetime) {
 </head>
 <body>
 <header class="top-bar">
-    <div class="logo"><h1>User Profile</h1></div>
+    <div class="logo">
+        <h1>User Profile</h1>
+          <button class="badge-primary-outlined sm-none">
+            <a  href="index.php">Return Home</a>
+
+        </button>
+    </div>
     <div class="user-actions">
         <a class="logout" href="logout.php">Logout</a>
+      
     </div>
 </header>
 

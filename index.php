@@ -1,5 +1,6 @@
 <?php
-
+session_name('USERSESSID');
+session_start();
 require_once __DIR__ . '/includes/db.php';
 
 
@@ -139,12 +140,22 @@ function timeAgo(string $datetime): string
             </div>
         </div>
     
-        <div class="user-actions">
-            <a class="logout" href="admin/login.php">Staff Login</a>
-            |
-            <a class="logout sm-none" href="login.php">Login</a>
-            <a class="primary-btn-sm" href="register.php">Register</a>
-        </div>
+
+              <!-- if user is logged in to display a button to profile page -->
+
+            <!-- If user is logged in, display a button to profile page -->
+            <?php if (!isset($_SESSION['user'])): ?>
+                <div class="user-actions">
+                    <a class="logout" href="admin/login.php">Staff Login</a> |
+                    <a class="logout sm-none" href="login.php">Login</a>
+                    <a class="primary-btn-sm" href="register.php">Register</a>
+                </div>
+            <?php else: ?>
+                <div class="user-actions">
+                    <a class="primary-btn-sm" href="user-profile.php">Visit Profile</a>
+                </div>
+            <?php endif; ?>
+
     </div>
 </header>
 
