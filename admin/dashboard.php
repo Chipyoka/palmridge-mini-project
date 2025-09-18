@@ -131,8 +131,9 @@ function timeAgo(string $datetime): string
 <header>
     <div class="top-bar">
         <div class="logo">
+            <button id="menuBtn" class="primary-btn-sm sm-only">=</button>
             <img src="/assets/images/logo.png" alt="Logo" height="36">
-            <h2><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard</h2>
+            <h2 class="sm-none"><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard</h2>
             <div>
                 <?php
                 if (isset($_SESSION['success'])) {
@@ -146,10 +147,11 @@ function timeAgo(string $datetime): string
                 }
                 ?>
             </div>
+            <a class="logout sm-only" href="logout.php">Logout</a>
         </div>
     
-        <div class="user-actions">
-            <span class="username"><?= htmlspecialchars($user['name']); ?></span> |
+        <div class="user-actions sm-none">
+            <span class="username"><?= htmlspecialchars($user['name']); ?> |</span>
             <span class="email"><?= htmlspecialchars($user['email']); ?></span>
             <a class="logout" href="logout.php">Logout</a>
         </div>
@@ -157,7 +159,7 @@ function timeAgo(string $datetime): string
 </header>
 
 <main class="dashboard">
-    <aside class="sidebar">
+    <aside class="sidebar sm-none">
         <nav>
             <ul>
                 <li class="li-active"><a href="dashboard.php">Dashboard</a></li>
@@ -180,8 +182,8 @@ function timeAgo(string $datetime): string
                 <?php endif; ?>
             </div>
             <div class="filter-section">
-                <h5>Advanced Filters</h5>
-                <div class="all-filters"> 
+                <h5>Advanced Filters <span class="tog">+</span></h5>
+                <div class="all-filters sm-none" id="filterSection"> 
                     <!-- Category Filter --> 
                     <select name="category"> 
                         <option value="">All Categories</option> 

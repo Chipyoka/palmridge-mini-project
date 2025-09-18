@@ -39,3 +39,29 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Dashboard Responsive JavaScript
+
+// Lets make the sidebar toggleable on small screens
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.querySelector('.sidebar'); // Select the sidebar element
+    const filterSection = document.getElementById('filterSection');
+    const tog = document.querySelector('.tog');
+
+    if (menuBtn && sidebar) {
+        menuBtn.addEventListener('click', function() {
+            // rem
+            sidebar.classList.toggle('sm-none');
+        });
+    }
+
+    if (tog && filterSection) {
+        tog.addEventListener('click', function() {
+            filterSection.classList.toggle('sm-none');
+            if (filterSection.classList.contains('sm-none')) {
+                tog.textContent = '+';
+            } else {
+                tog.textContent = '-';
+            }
+        });
+    }
+});
