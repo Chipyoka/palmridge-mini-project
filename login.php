@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Optional: regenerate session ID to prevent fixation
                 session_regenerate_id(true);
 
-                header("Location: index.php");
+                header("Location: user-profile.php");
                 exit;
             } else {
                 $error = "Kindly use staff login.";
