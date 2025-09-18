@@ -183,6 +183,7 @@ div.error {
     margin: .75em 0;
 
     border-radius: .25em;
+    color: var(--secondary-color) !important;
 
     display: flex;
     justify-content: center;
@@ -190,6 +191,25 @@ div.error {
 }
 div.error p{
     color: var(--secondary-color) !important;
+    font-size: .85rem;
+    text-align: center;
+}
+div.success {
+    width: 100%;
+    background: #e6ffed;
+    border: 1px solid #28a745;
+    padding: .5em 1em;
+    margin: .75em 0;
+        color: #28a745 !important;
+
+    border-radius: .25em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.success p{
+    color: #28a745 !important;
     font-size: .85rem;
     text-align: center;
 }
@@ -209,7 +229,10 @@ div.error p{
     transition: background 0.3s ease-in-out;
     text-decoration: none;
 }
-
+.badge-primary-outlined a,.badge-primary-outlined a:visited, .badge-primary-outlined a:active, .badge-primary-outlined a:hover{
+    color: var(--primary-color);
+    text-decoration: none;
+}
 /* text status colors */
 .text-success {
     color: #28a745;
@@ -229,6 +252,7 @@ div.error p{
     border-radius: .15rem;
     border: none;
     transition: background 0.3s ease-in-out;
+    cursor: pointer;
 }
 .badge-primary{
     background: var(--primary-color);
@@ -237,6 +261,7 @@ div.error p{
     border-radius: .15rem;
     border: none;
     transition: background 0.3s ease-in-out;
+    cursor: pointer;
 }
 .badge-primary-outlined{
     background: var(--background-light);
@@ -245,6 +270,7 @@ div.error p{
     border-radius: .15rem;
     border: thin solid var(--primary-color);
     transition: background 0.3s ease-in-out;
+    cursor: pointer;
 }
 .badge-primary:hover{
     background: var(--primary-color-h);
@@ -775,6 +801,37 @@ section.bids .bid-record p{
 
 
 
+
+
+
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
+/* ****************************************************** */
+/* Common */
+.auth-form{
+    width: 45dvw;
+    max-width: 450px;
+    margin: 4em auto;
+
+    background: var(--background-light);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    padding: 1em 2em;
+}
+.text-center{
+    text-align: center;
+}
+
+/* small screens */
+
+@media screen and (max-width: 768px) {
+    .auth-form{
+        width: 90dvw;
+        max-width: 90dvw;
+        margin: 2em auto;
+        padding: 1em;
+    }
+}
 
 
 

@@ -23,6 +23,7 @@ config/config.php
 includes/db.php
 
 vendor/
+tests/
 
 # Ignore compiled CSS / JS if you use preprocessors
 assets/css/*.min.css

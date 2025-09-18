@@ -152,7 +152,8 @@ function timeAgo(string $datetime): string
     
         <div class="user-actions sm-none">
             <span class="username"><?= htmlspecialchars($user['name']); ?> |</span>
-            <span class="email"><?= htmlspecialchars($user['email']); ?></span>
+            <span class="email"><?= htmlspecialchars($user['email']); ?> |</span>
+            <span class="badge-primary-outlined"><a href="../change-password.php">Change Password</a></span>
             <a class="logout" href="logout.php">Logout</a>
         </div>
     </div>
