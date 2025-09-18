@@ -215,6 +215,37 @@ div.error p{
     color: #dc3545;
 }
 
+/* badge buttons styles */
+.badge-danger{
+    background: var(--secondary-color);
+    color: var(--background-light);
+    padding: .25em .75em;
+    border-radius: .15rem;
+    border: none;
+    transition: background 0.3s ease-in-out;
+}
+.badge-primary{
+    background: var(--primary-color);
+    color: var(--background-light);
+    padding: .25em .75em;
+    border-radius: .15rem;
+    border: none;
+    transition: background 0.3s ease-in-out;
+}
+.badge-primary-outlined{
+    background: var(--background-light);
+    color: var(--primary-color);
+    padding: .25em .75em;
+    border-radius: .15rem;
+    border: thin solid var(--primary-color);
+    transition: background 0.3s ease-in-out;
+}
+.badge-primary:hover{
+    background: var(--primary-color-h);
+}
+.badge-danger:hover{
+    background: var(--secondary-color-h);
+}
 hr{
 
    border: 1px solid #f1f1f1;
@@ -265,6 +296,13 @@ hr{
     text-align: center;
 }
 
+/* style for disabled button */
+button:disabled, .badge-primary-outlined:disabled {
+    background: #e0e0e0;
+    color: #a0a0a0;
+    border: 1px solid #a0a0a0;
+    cursor: not-allowed;
+}
 
 /* ****************************************************** */
 /* ****************************************************** */

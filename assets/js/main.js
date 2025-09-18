@@ -65,3 +65,62 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+// Manage users page
+document.addEventListener('DOMContentLoaded', function() {
+    // Clear filters functionality
+    const clearFilters = document.getElementById('clearFilters');
+    if (clearFilters) {
+        clearFilters.addEventListener('click', function() {
+            window.location.href = 'manage_users.php';
+        });
+    }
+    
+    // Mobile menu functionality
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    
+    if (menuBtn && sidebar && overlay) {
+        menuBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+        
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    }
+    
+    // User dropdown functionality
+    const userToggle = document.querySelector('.user-toggle');
+    const userDropdown = document.querySelector('.dropdown-menu');
+    
+    if (userToggle && userDropdown) {
+        userToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('active');
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+                userDropdown.classList.remove('active');
+            }
+        });
+    }
+    
+    // Auto-hide alerts
+    setTimeout(function() {
+        const alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.opacity = '0';
+            alert.style.transition = 'opacity 0.5s';
+            setTimeout(function() {
+                alert.style.display = 'none';
+            }, 500);
+        });
+    }, 5000);
+});
