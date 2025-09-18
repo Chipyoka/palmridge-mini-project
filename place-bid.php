@@ -137,7 +137,6 @@ $_SESSION['flash'] = ['success'=>'', 'error'=>''];
         <div class="mt-2 error">
             <hr>
             <p class="text-center">You have already placed the maximum of 2 bids for this property.</p>
-            <!-- <p class="text-center"><a class="primary-btn mt-3" href="index.php">Back to Listings</a></p> -->
         </div>
     <?php else: ?>
         <form method="POST" class="mt-3">
