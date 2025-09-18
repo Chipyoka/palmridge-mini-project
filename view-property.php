@@ -159,7 +159,7 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
             </button>
             <button 
                 class="primary-btn-outlined" 
-                onclick="checkLogin()"
+                onclick="checkLogin(<?= (int)$property['id'] ?>)"
             >
                 Place a bid
             </button>
@@ -231,12 +231,13 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
 
 <script src="assets/js/main.js"></script>
 <script>
-    function checkLogin() {
+    function checkLogin(propertyId) {
         <?php if (!isset($_SESSION['user'])): ?>
             alert("You must be logged in to continue.");
             window.location.href = "login.php";
         <?php else: ?>
-            window.location.href = "place-bid.php"; // logged-in users
+            // redirect to place-bid.php with property ID as GET parameter
+            window.location.href = "place-bid.php?property_id=" + propertyId;
         <?php endif; ?>
     }
    
