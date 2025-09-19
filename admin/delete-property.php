@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/db.php';
 // Check if user is admin
 if (!isset($_SESSION['user']) || (int)$_SESSION['user']['is_admin'] !== 1) {
     $_SESSION['error'] = "Unauthorized access. Admin privileges required.";
-    header('Location: /admin/login.php');
+ header("Location: /odl_mini_projects/zambezi-mini-project/index.php");
     exit;
 }
 

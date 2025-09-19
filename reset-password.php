@@ -81,7 +81,7 @@ $_SESSION['flash'] = ['success'=>'', 'error'=>''];
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Reset Password – Zambezi ARPLSS</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 <main class="auth-form">
@@ -104,6 +104,6 @@ $_SESSION['flash'] = ['success'=>'', 'error'=>''];
 
     <p class="hyperlink mt-3 text-center"><a  href="index.php">Back to Home</a></p>
 </main>
-<script src="/assets/js/main.js"></script>
+<script type = "module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </body>
 </html>

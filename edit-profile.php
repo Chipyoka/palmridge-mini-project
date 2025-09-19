@@ -59,7 +59,7 @@ if (isset($_GET['success'])) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit Profile – <?= htmlspecialchars($user['name']); ?></title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 
@@ -100,5 +100,5 @@ if (isset($_GET['success'])) {
 
 </body>
 
-<script src="assets/js/main.js"></script>
+<script type="module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </html>

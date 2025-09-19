@@ -51,7 +51,7 @@ function timeAgo($datetime) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>User Profile – Zambezi ARPLSS</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 <header class="top-bar">

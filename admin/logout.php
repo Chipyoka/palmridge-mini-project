@@ -33,5 +33,5 @@ session_start();
 session_regenerate_id(true);
 
 // Redirect to admin login
-header("Location: /admin/login.php");
+header("Location: /odl_mini_projects/zambezi-mini-project/admin/login.php");
 exit;

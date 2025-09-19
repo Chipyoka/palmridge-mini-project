@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login – Zambezi Property</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
     <header>
@@ -95,5 +95,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 <!-- add js script -->
-<script type="module" src="/assets/js/main.js"></script>
+<script type="module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </html>

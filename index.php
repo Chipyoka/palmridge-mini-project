@@ -115,10 +115,10 @@ function timeAgo(string $datetime): string
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Real-time Property Search – Zambezi Diamond ARPLSS</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Property Search – Zambezi Diamond ARPLSS</title>
+    <link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 <header>
@@ -165,7 +165,7 @@ function timeAgo(string $datetime): string
         <!-- Advanced Search & Filters --> 
          <form method="GET" class="search-filters" > 
             <div class="search-input"> 
-                <img src="/assets/images/logo.png" alt="Logo" height="36">
+                <img src="/odl_mini_projects/zambezi-mini-project/assets/images/logo.png" alt="Logo" height="36">
 
                 <!-- Search Input --> 
                 <input type="text" name="search" placeholder="Search by title or description" value="<?= htmlspecialchars($searchTerm) ?>"> 
@@ -230,9 +230,9 @@ function timeAgo(string $datetime): string
             <?php if($properties): ?>
                 <?php foreach($properties as $prop): ?>
                     <?php
-                        $imgSrc = $prop['image_path'] && file_exists(__DIR__.'/../'.$prop['image_path'])
-                                  ? '/'.$prop['image_path']
-                                  : '/assets/images/default-property.png';
+                        $imgSrc = $prop['image_path'] && file_exists(__DIR__.'/'.$prop['image_path'])
+                                  ? '/odl_mini_projects/zambezi-mini-project/'.$prop['image_path']
+                                  : '/odl_mini_projects/zambezi-mini-project/assets/images/default-property.png';
                     ?>
                     <div class="card">
                         <img src="<?= htmlspecialchars($imgSrc) ?>" alt="Property Image">
@@ -274,6 +274,6 @@ function timeAgo(string $datetime): string
         </div>
     </aside>
 </main>
-<script type="module" src="/assets/js/main.js"></script>
+<script type="module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </body>
 </html>

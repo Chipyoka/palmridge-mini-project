@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/db.php';
 
 // Only admin may view
 if (!isset($_SESSION['user']) || (int)$_SESSION['user']['is_admin'] !== 1) {
-    header('Location: /admin/login.php');
+ header("Location: /odl_mini_projects/zambezi-mini-project/index.php");
     exit;
 }
 
@@ -153,7 +153,7 @@ $stmt->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Users – Zambezi Diamond ARPLSS</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 
@@ -161,7 +161,7 @@ $stmt->close();
         <div class="top-bar">
             <div class="logo">
                 <button id="menuBtn" class="primary-btn-sm sm-only">=</button>
-                <img src="/assets/images/logo.png" alt="Logo" height="36">
+                <img src="/odl_mini_projects/zambezi-mini-project/assets/images/logo.png" alt="Logo" height="36">
                 <h2 class="sm-none"><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard - Manage Users</h2>
                 <div class="alert-container">
                     <?php
@@ -292,6 +292,6 @@ $stmt->close();
     </main>
 
 <!-- add js script -->
-<script src="/assets/js/main.js"></script>
+<script type = "module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </body>
 </html>

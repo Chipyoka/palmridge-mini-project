@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/db.php';
 
 
 if (!isset($_SESSION['user']) || (int)$_SESSION['user']['is_admin'] !== 1) {
-    header('Location: /admin/login.php');
+ header("Location: /odl_mini_projects/zambezi-mini-project/index.php");
     exit;
 }
 
@@ -125,14 +125,14 @@ function timeAgo(string $datetime): string
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard – Zambezi Diamond ARPLSS</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 <header>
     <div class="top-bar">
         <div class="logo">
             <button id="menuBtn" class="primary-btn-sm sm-only">=</button>
-            <img src="/assets/images/logo.png" alt="Logo" height="36">
+            <img src="/odl_mini_projects/zambezi-mini-project/assets/images/logo.png" alt="Logo" height="36">
             <h2 class="sm-none"><?= (int)$user['is_admin'] === 1 ? 'Admin' : 'Staff' ?> Dashboard</h2>
             <div>
                 <?php
@@ -239,8 +239,8 @@ function timeAgo(string $datetime): string
                 <?php foreach($properties as $prop): ?>
                     <?php
                         $imgSrc = $prop['image_path'] && file_exists(__DIR__.'/../'.$prop['image_path'])
-                                  ? '/'.$prop['image_path']
-                                  : '/assets/images/default-property.png';
+                                  ? '/odl_mini_projects/zambezi-mini-project/'.$prop['image_path']
+                                  : '/odl_mini_projects/zambezi-mini-project/assets/images/default-property.png';
                     ?>
                     <div class="card">
                         <img src="<?= htmlspecialchars($imgSrc) ?>" alt="Property Image">
@@ -282,6 +282,6 @@ function timeAgo(string $datetime): string
         </div>
     </aside>
 </main>
-<script type = "module" src="/assets/js/main.js"></script>
+<script type="module" src="/odl_mini_projects/zambezi-mini-project/assets/js/main.js"></script>
 </body>
 </html>

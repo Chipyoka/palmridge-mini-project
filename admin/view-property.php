@@ -73,8 +73,8 @@ function timeAgo($datetime) {
 
 // Determine image source with fallback logic (same as dashboard.php)
 $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image_path'])
-          ? '/'.$property['image_path']
-          : '/assets/images/default-property.png';
+          ? '/odl_mini_projects/zambezi-mini-project/'.$property['image_path']
+          : '/odl_mini_projects/zambezi-mini-project/assets/images/default-property.png';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,7 +82,7 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Property Details – Zambezi Diamond ARPLSS</title>
-<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="stylesheet" href="/odl_mini_projects/zambezi-mini-project/assets/css/style.css">
 </head>
 <body>
 <header class="top-bar">
@@ -146,13 +146,13 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
         <h3>Bids</h3>
         <?php if ($bids): ?>
             <ul>
+                <li class="bid-record bold bg-gray sm-none">
+                    <p>Name</p>
+                    <p>Phone</p>
+                    <p>Offer Amount</p>
+                    <p>Date</p>
+                </li>
                 <?php foreach ($bids as $bid): ?>
-                    <li class="bid-record bold bg-gray sm-none">
-                        <p>Name</p>
-                        <p>Phone</p>
-                        <p>Offer Amount</p>
-                        <p>Date</p>
-                    </li>
                     <li class="bid-record">
                         <p><strong><?= htmlspecialchars($bid['bidder_name']); ?></strong></p>
                         <p><?= htmlspecialchars($bid['bidder_phone']); ?></p>
@@ -173,9 +173,9 @@ $imgSrc = $property['image_path'] && file_exists(__DIR__.'/../'.$property['image
         <div class="property-cards">
             <?php foreach($similar as $similarProp): ?>
                 <?php
-                    $similarImgSrc = $similarProp['image_path'] && file_exists(__DIR__.'/../'.$similarProp['image_path'])
+                    $similarImgSrc = $similarProp['image_path'] && file_exists(__DIR__.'/../uploads/'.$similarProp['image_path'])
                                   ? '/'.$similarProp['image_path']
-                                  : '/assets/images/default-property.png';
+                                  : '/odl_mini_projects/zambezi-mini-project/assets/images/default-property.png';
                 ?>
                 <div class="card">
                     <img src="<?= htmlspecialchars($similarImgSrc) ?>" alt="Similar Property Image">

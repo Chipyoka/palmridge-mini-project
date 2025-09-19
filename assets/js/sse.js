@@ -1,8 +1,9 @@
 // sse.js
 export function initPropertyStatusSSE() {
     console.log('[SSE] Initializing property status listener...');
+    console.log('[SSE] No Error...');
 
-    const evtSource = new EventSource('../../sse/status-stream.php');
+    const evtSource = new EventSource('/odl_mini_projects/zambezi-mini-project/sse/status-stream.php');
 
     evtSource.addEventListener('statusUpdate', e => {
         console.log('[SSE] Received update:', e.data);
