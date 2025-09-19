@@ -156,6 +156,6 @@ $_SESSION['flash'] = ['success'=>'', 'error'=>''];
         <a href="index.php">Back to Listings</a>
     </p>
 </main>
-<script src="/assets/js/main.js"></script>
+<script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>

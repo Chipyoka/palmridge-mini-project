@@ -1,3 +1,12 @@
+import { initPropertyStatusSSE } from './sse.js';
+
+
+// Initialize SSE updates
+document.addEventListener('DOMContentLoaded', function() {
+    initPropertyStatusSSE();
+});
+
+
 // change adminLogin button text to loading when clicked for 500ms
 document.addEventListener('DOMContentLoaded', function() {
     const loginBtn = document.getElementById('adminLoginBtn');

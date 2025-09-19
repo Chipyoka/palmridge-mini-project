@@ -91,5 +91,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </body>
 
 <!-- add js script -->
-<script src="/assets/js/main.js"></script>
+<script type="module" src="/assets/js/main.js"></script>
 </html>

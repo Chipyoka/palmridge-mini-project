@@ -238,10 +238,16 @@ function timeAgo(string $datetime): string
                         <img src="<?= htmlspecialchars($imgSrc) ?>" alt="Property Image">
                         <div class="row">
                             <p class="text-sm"><?= timeAgo($prop['created_at']) ?></p>
-                            <p class="text-sm capitalize 
-                               <?= $prop['status']==='available'?'text-success':($prop['status']==='pending'?'text-warning':'text-danger') ?>">
-                                <strong><?= htmlspecialchars($prop['status']) ?></strong>
-                            </p>
+                          <p
+                            class="text-sm capitalize status
+                                <?= $prop['status']==='available'?'text-success'
+                                    :($prop['status']==='pending'?'text-warning':'text-danger') ?>"
+                            data-property-id="<?= $prop['id'] ?>"
+                            data-status="<?= htmlspecialchars($prop['status']) ?>"
+                        >
+                            <strong><?= htmlspecialchars($prop['status']) ?></strong>
+                        </p>
+
                         </div>
                         <hr>
                         <div class="row">
@@ -268,6 +274,6 @@ function timeAgo(string $datetime): string
         </div>
     </aside>
 </main>
-<script src="/assets/js/main.js"></script>
+<script type="module" src="/assets/js/main.js"></script>
 </body>
 </html>
